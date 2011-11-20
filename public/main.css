@@ -1,0 +1,50 @@
+body   {background:#000;
+        color:#FFF;
+        text-align:center;
+        font-family:verdana, arial, helvetica, sans-serif;}
+h1, h2, h4 {font-weight:normal;}
+h1     {margin-bottom:10px;}
+h2     {margin-top:0;}
+h4     {margin-top:0;}
+td     {padding:10px; width:200px; text-align:center}
+applet {border:1px solid #000;}
+form   {margin:0; text-align:left;}
+label  {display:inline-block; min-width:100px;}
+
+img.audio-icon {max-width:190px; max-height:190px;}
+
+h4.flash {font-style:italic;}
+h4.error {color:#F00;}
+
+.module { display:inline-block;
+          background:#FFF;
+          color:#000;
+          min-height:220px;
+          vertical-align:top;
+          padding:30px;
+          margin:10px;
+          -moz-border-radius:    8px;
+          -webkit-border-radius: 8px;
+          border-radius:         8px;
+
+background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.21, rgb(221,221,221)),
+    color-stop(0.61, rgb(238,238,238)),
+    color-stop(0.81, rgb(255,255,255))
+);
+background-image: -moz-linear-gradient(
+    center bottom,
+    rgb(221,221,221) 21%,
+    rgb(238,238,238) 61%,
+    rgb(255,255,255) 81%
+);
+}
+
+.submit-area {margin-top:30px;
+              text-align:center}
+input[type="submit"] {font-size:120%;}
+
+/* #panda-main img {border:1px solid #000;}*/
