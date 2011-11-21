@@ -12,7 +12,7 @@ if (is_null($html_response))
     <style type="text/css">
       @import "<?php echo "$WEB_PUBLIC_DIR" ?>/main.css";
     </style>
-    <script src="<?php echo "$WEB_PUBLIC_DIR" ?>/jquery.js" type="text/javascript"></script>
+    <script src="<?php echo "$WEB_PUBLIC_DIR" ?>/jquery-1.7.min.js" type="text/javascript"></script>
     <script src="<?php echo "$WEB_PUBLIC_DIR" ?>/application.js" type="text/javascript"></script>
   </head>
   <body>
@@ -56,11 +56,11 @@ if (is_null($html_response))
     <div id="uploader" class="module">
       <h2>Add 2 panda</h2>
       <form enctype="multipart/form-data" action="/create" method="POST">
-        <label>Title</label><input name="title" type="text"/><br/>
-        <label>Image</label><input name="imagefile" type="file"/><br/>
-        <label>Audio</label><input name="audiofile" type="file"/><br/>
+        <label>Title</label><input id="input-title" name="title" type="text"/><br/>
+        <label>Image</label><input id="input-image" name="imagefile" type="file"/><br/>
+        <label>Audio</label><input id="input-audio" name="audiofile" type="file"/><br/>
         <div class="submit-area">
-          <input value="Upload" type="submit"/>
+          <input id="uploader-submit" value="Upload" type="submit" disabled="true"/>
         </div>
       </form>
     </div>
