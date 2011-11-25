@@ -99,6 +99,9 @@ function index()
   try
     {
       $public_mp3s = all_public_mp3s();
+      if (count($public_mp3s) == 0)
+        return flash("The P A N D A database is empty.");
+
       $html = "<table>\n<tr>\n";
       $icon_fns = scandir($ICON_DIR);
       $i = 0;
@@ -187,33 +190,43 @@ function vlc_play($filename)
 
 function db_public_mp3s($db_connection)
 {
-  return pg_fetch_all(pg_query($db_connection,
-    "SELECT * FROM public_mp3s ORDER BY id DESC"));
+  return mysql_fetch_all(mysql_query(
+    "SELECT * FROM public_mp3s ORDER BY id DESC", $db_connection));
+}
+
+/* why does this not exist already??? */
+function mysql_fetch_all($resource)
+{
+  while (($all[] = mysql_fetch_assoc($resource)) ||
+         array_pop($all))
+    ;
+  return $all;
 }
 
 function db_insert_row($title, $new_audio_fn)
 {
-  return pg_query(db_readwrite_connect(),
+  return mysql_query(
     "INSERT INTO public_mp3s ".
       "(public_name, filename) VALUES ".
-      "('$title', '$new_audio_fn')");
+      "('$title', '$new_audio_fn')", db_readwrite_connect());
 }
 
 function db_readonly_connect()
 {
-  $db_connection = pg_pconnect("dbname=panda user=panda_readonly password=panda");
-  if (!$db_connection)
-    throw new Exception("Connection to P A N D A database failed. Go away.");
-  pg_exec($db_connection, "SET search_path = public");
-  return $db_connection;
+  return db_connect('panda_readonly', 'panda');
 }
 
 function db_readwrite_connect()
 {
-  $db_connection = pg_pconnect("dbname=panda user=panda_creator password=pandarr");
+  return db_connect('panda_readwrite', 'pandarr');
+}
+
+function db_connect($user, $pw)
+{
+  $db_connection = mysql_connect('localhost', $user, $pw);
   if (!$db_connection)
     throw new Exception("Connection to P A N D A database failed. Go away.");
-  pg_exec($db_connection, "SET search_path = public");
+  mysql_select_db('panda');
   return $db_connection;
 }
 
