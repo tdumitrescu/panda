@@ -182,7 +182,7 @@ function flash($message, $type = '')
 
 function vlc_play($filename)
 {
-  return exec("vlc --play-and-exit $filename");
+  return exec("cvlc --play-and-exit $filename");
 }
 
 
