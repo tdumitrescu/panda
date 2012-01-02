@@ -6,22 +6,38 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
-  $('#uploader input').change(checkFormValidity);
-  $('#uploader input[type="text"]').on('keyup', checkFormValidity);
-  $('#uploader input[type="text"]').on('blur', checkFormValidity);
+  $('#uploader input').change(validateUploadForm);
+  $('#uploader input[type="text"]').on('keyup', validateUploadForm);
+  $('#uploader input[type="text"]').on('blur', validateUploadForm);
+
+  $('#talk input[type="text"]').on('keyup', validateTalkForm);
+  $('#talk input[type="text"]').on('blur', validateTalkForm);
 });
 
-var checkFormValidity = function()
+var validateUploadForm = function()
 {
-  var valid =
-    $('#input-title').val() != '' &&
-    $('#input-image').val() != '' &&
-    $('#input-audio').val() != '';
+  validateForm('uploader', function() {
+    return
+	  $('#input-title').val() != '' &&
+      $('#input-image').val() != '' &&
+      $('#input-audio').val() != '';
+  });
+}
 
-  if (valid)
-    $('#uploader-submit').removeAttr('disabled');
+var validateTalkForm = function()
+{
+  validateForm('talk', function() {
+    return $('#input-txtmsg').val() != '';
+  });
+}
+
+var validateForm = function(formName, validityCheckFunc)
+{
+  $formSubmit = $('#' + formName + '-submit');
+  if (validityCheckFunc())
+    $formSubmit.removeAttr('disabled');
   else
-    $('#uploader-submit').attr('disabled', 'true');
+    $formSubmit.attr('disabled', 'true');
 }
 
 })(jQuery);

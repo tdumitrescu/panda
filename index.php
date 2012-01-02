@@ -16,7 +16,7 @@ if (is_null($html_response))
     <script src="<?php echo "$WEB_PUBLIC_DIR" ?>/application.js" type="text/javascript"></script>
   </head>
   <body>
-    <h1>panda 5.3.2</h1>
+    <h1>panda 6.1.7</h1>
 
     <div class="content-wrapper">
     <div id="panda-main" class="module">
@@ -26,6 +26,16 @@ if (is_null($html_response))
 
     <div class="content-wrapper">
 
+	<div id="talk" class="module">
+      <h2>Talky panda</h2>
+      <form enctype="multipart/form-data" action="/talk" method="POST">
+        <input id="input-txtmsg" name="txtmsg" type="text" size="150" maxlength="300"/><br/>
+        <div class="submit-area">
+          <input id="talk-submit" type="submit" disabled="true"/>
+        </div>
+      </form>
+	</div>
+	
     <div id="recorder" class="module">
       <h2>Broadcast a very important announcement</h2>
       <applet

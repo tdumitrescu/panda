@@ -18,6 +18,9 @@ function panda_response()
   else if (get_var('create') != '')
     return create();
 
+  else if (get_var('talk') != '')
+    return talk();
+
   else
     return index();
 }
@@ -88,6 +91,21 @@ function create()
       $html = flash("Error adding 2 panda: {$e->getMessage()}", 'error');
     }
 
+  return $html . index();
+}
+
+function talk()
+{
+  try
+    {
+      $text = $_POST['txtmsg'];
+      text_to_speech($text);
+      $html = flash("Talky panda");
+	}
+  catch (Exception $e)
+    {
+      $html = flash("Panda can't talk: {$e->getMessage()}", 'error');
+    }
   return $html . index();
 }
 
@@ -183,6 +201,11 @@ function flash($message, $type = '')
 function vlc_play($filename)
 {
   return exec("vlc -Idummy --volume 1024 --play-and-exit $filename");
+}
+
+function text_to_speech($s)
+{
+  return exec("espeak -v en -p 40 -s 110 \"$s\"");
 }
 
 

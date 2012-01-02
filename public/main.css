@@ -47,4 +47,5 @@ background-image: -moz-linear-gradient(
               text-align:center}
 input[type="submit"] {font-size:120%;}
 
-/* #panda-main img {border:1px solid #000;}*/
+#panda-main {background-image:none;}
+#talk {min-height:150px;}

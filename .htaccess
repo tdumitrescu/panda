@@ -3,3 +3,4 @@ RewriteEngine on
 RewriteRule ^play/([^/]+) /?playfile=$1 [NC]
 RewriteRule ^broadcast /?broadcast=true [NC]
 RewriteRule ^create /?create=true [NC]
+RewriteRule ^talk /?talk=true [NC]
