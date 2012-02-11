@@ -17,10 +17,12 @@ $(document).ready(function() {
 var validateUploadForm = function()
 {
   validateForm('uploader', function() {
-    return
+    var valid =
 	  $('#input-title').val() != '' &&
       $('#input-image').val() != '' &&
       $('#input-audio').val() != '';
+
+    return valid;
   });
 }
 
