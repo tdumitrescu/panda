@@ -205,7 +205,11 @@ function vlc_play($filename)
 
 function text_to_speech($s)
 {
-  return exec("espeak -v en -p 40 -s 110 \"$s\"");
+  //Hawkingish panda:
+  //return exec("C:\\bin\\espeak -v en -p 40 -s 110 \"$s\"");
+
+  //hey lady
+  return exec("C:\\bin\\espeak -v en+f2 -s 140 \"$s\"");
 }
 
 
