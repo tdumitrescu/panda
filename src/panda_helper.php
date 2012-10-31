@@ -6,6 +6,13 @@ $ICON_DIR       = "$PUBLIC_DIR/icons";
 $WEB_PUBLIC_DIR = "/$PUBLIC_DIR";
 $WEB_ICON_DIR   = "$WEB_PUBLIC_DIR/icons";
 
+$ESPEAK_VOICES = array(
+  "HAWKING" => "-v en -p 40 -s 80",
+  "LADY"    => "-v en+f2 -s 140",
+  "SPOOK"   => "-v en+croak -p 0 -s 110"
+);
+
+
 function panda_response()
 {
   $file_to_play = get_var('playfile');
@@ -205,11 +212,19 @@ function vlc_play($filename)
 
 function text_to_speech($s)
 {
-  //Hawkingish panda:
-  //return exec("C:\\bin\\espeak -v en -p 40 -s 110 \"$s\"");
+  global $ESPEAK_VOICES;
 
-  //hey lady
-  return exec("C:\\bin\\espeak -v en+f2 -s 140 \"$s\"");
+  $halloween = halloween();
+  $espeak_params = $ESPEAK_VOICES[$halloween ? "SPOOK" : "LADY"];
+  if ($halloween)
+    $s = "$s... moowaah ha ha";
+
+  return exec("C:\\bin\\espeak $espeak_params \"$s\"");
+}
+
+function halloween()
+{
+  return date('m-d') == '10-31';
 }
 
 
